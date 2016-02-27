@@ -1,5 +1,4 @@
 import ast
-
 IMEI = raw_input("Enter your IMEI number: ")
 while (IMEI == ""):
 	IMEI = raw_input("Enter your IMEI number: ")
@@ -34,7 +33,6 @@ for j  in range(0,DIGITS,2):
 	x2 += ast.literal_eval(num_2)
 
 RESULT2 = x2
-
 RESULT = RESULT1 + RESULT2
 REMAIN = RESULT % 10
 MUST = 10 - REMAIN

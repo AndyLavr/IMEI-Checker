@@ -1,23 +1,17 @@
 #!/bin/sh
-
 TOTAL=0
 SUM=0
 i=1
 x=0
-
 while [[ -z $IMEI ]]
 	do
 		read -p "Enter your IMEI number: " IMEI
 	done
-
 MOD=$(echo -n ${IMEI} | sed 's/.$//')
 DIGITS=$(echo -n $MOD | wc -c)
 ORGDIG=$(echo -n ${IMEI} | wc -c)
 CHECK=$(echo ${IMEI} | cut -c ${ORGDIG})
-seven=$(echo ${IMEI} | cut -c 7) 
-eight=$(echo ${IMEI} | cut -c 8)
-COUNTRY=$(echo ${seven}${eight})
-
+COUNTRY=$(echo ${IMEI} | cut -c 7,8)
 for (( i=2 ; i<=${DIGITS} ; i+=2 ))
 	do
 		NUM1=$(echo $(echo -n ${MOD} | cut -c $i))
@@ -30,20 +24,16 @@ for (( i=2 ; i<=${DIGITS} ; i+=2 ))
 			v=$(($y+$z))
 			x=$((x+${v}))
 		fi
-
 RESULT1=${x}
 	done
-
 for (( j=1; j<=${DIGITS} ; j+=2 ))
 	do
 		NUM2=$(echo $(echo -n ${MOD} | cut -c $j))
 		RESULT2=$((${RESULT2}+${NUM2}))
 	done
-
 RESULT=$((${RESULT1}+${RESULT2}))
 REMAIN=`expr ${RESULT} % 10`
 MUST=$((10 - ${REMAIN}))
-
 if [[ ${MUST} = ${CHECK} ]]; then
 	echo "Your IMEI number is VALID"
 	case ${COUNTRY} in
