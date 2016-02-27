@@ -19,7 +19,7 @@ eight=$(echo ${IMEI} | cut -c 8)
 COUNTRY=$(echo ${seven}${eight})
 
 for (( i=2 ; i<=${DIGITS} ; i+=2 ))
-	do 
+	do
 		NUM1=$(echo $(echo -n ${MOD} | cut -c $i))
 		MUL1=$((${NUM1}*2))
 		if [[ ${MUL1} -lt 10 ]]; then
@@ -35,7 +35,7 @@ RESULT1=${x}
 	done
 
 for (( j=1; j<=${DIGITS} ; j+=2 ))
-	do 
+	do
 		NUM2=$(echo $(echo -n ${MOD} | cut -c $j))
 		RESULT2=$((${RESULT2}+${NUM2}))
 	done
@@ -46,11 +46,7 @@ MUST=$((10 - ${REMAIN}))
 
 if [[ ${MUST} = ${CHECK} ]]; then
 	echo "Your IMEI number is VALID"
-else
-	echo "Your IMEI number is not VALID"
-fi
-
-case ${COUNTRY} in
+	case ${COUNTRY} in
 	00)				echo "Your phone is originated from the actual country of Phone Company itself and it's quality is the 'BEST'";;
 	01|10)			echo "Your phone is manufactured in 'Finland' and it's quality is 'VERY GOOD'";;
 	02|20)			echo "Your phone is manufactured in 'Emirates' and it's quality is 'LOW'";;
@@ -59,5 +55,7 @@ case ${COUNTRY} in
 	06|60)			echo "Your phone is manufactured either in 'Hong-Kong or Mexico' and it's quality is 'NOT BAD'";;
 	08|80)			echo "Your phone is manufactured in 'Finland' and it's quality is 'FAIR'";;
 	13)				echo "Your phone is manufactured in 'Finland' and it's quality is 'TOO BAD and DANGEROUS for health!'";;
-esac
-
+	esac
+else
+	echo "Your IMEI number is not VALID"
+fi
