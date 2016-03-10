@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 TOTAL=0
 SUM=0
 i=1
 x=0
-while [[ -z $IMEI ]]
+while [ -z $IMEI ]
 	do
 		read -p "Enter your IMEI number: " IMEI
 	done
@@ -14,16 +14,16 @@ CHECK=$(echo ${IMEI} | cut -c ${ORGDIG})
 COUNTRY=$(echo ${IMEI} | cut -c 7,8)
 for (( i=2 ; i<=${DIGITS} ; i+=2 ))
 	do
-		NUM1=$(echo $(echo -n ${MOD} | cut -c $i))
-		MUL1=$((${NUM1}*2))
-		if [[ ${MUL1} -lt 10 ]]; then
-			x=$((x+${MUL1}))
-		else
-			y=$(echo ${MUL1} | cut -c 1)
-			z=$(echo ${MUL1} | cut -c 2)
-			v=$(($y+$z))
-			x=$((x+${v}))
-		fi
+	  NUM1=$(echo $(echo -n ${MOD} | cut -c $i))
+	  MUL1=$((${NUM1}*2))
+	    if [[ ${MUL1} -lt 10 ]]; then
+		x=$((x+${MUL1}))
+	    else
+		y=$(echo ${MUL1} | cut -c 1)
+		z=$(echo ${MUL1} | cut -c 2)
+		v=$(($y+$z))
+		x=$((x+${v}))
+	    fi
 RESULT1=${x}
 	done
 for (( j=1; j<=${DIGITS} ; j+=2 ))

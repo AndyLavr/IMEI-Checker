@@ -1,3 +1,5 @@
+#!/usr/bin/python2.7
+
 import ast
 IMEI = raw_input("Enter your IMEI number: ")
 while (IMEI == ""):
